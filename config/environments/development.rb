@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.hosts << 'sos.local'
+  config.hosts << 'api.sos.local'
+  config.hosts << 'app.sos.local'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -62,3 +66,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+# rubocop:enable Metrics/BlockLength

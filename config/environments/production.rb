@@ -2,6 +2,10 @@
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.hosts << 'sos.ao'
+  config.hosts << 'www.sos.ao'
+  config.hosts << 'app.sos.ao'
+  config.hosts << 'api.sos.ao'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
