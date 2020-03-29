@@ -11,10 +11,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "prettier": "^2.0.2",
     "webpack-dev-server": "^3.10.3"
   }
 }
