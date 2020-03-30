@@ -25,5 +25,19 @@ ActiveRecord::Schema.define(version: 2020_03_30_012836) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone"], name: "index_users_on_phone", unique: true
   end
+    
+  create_table "volunteers", force: :cascade do |t|
+    t.string "fullname"
+    t.string "email"
+    t.string "password_digest"
+    t.string "cellphone"
+    t.string "types_of_availability"
+    t.string "province"
+    t.string "county"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cellphone"], name: "index_volunteers_on_cellphone", unique: true
+    t.index ["email"], name: "index_volunteers_on_email", unique: true
+  end
 
 end
