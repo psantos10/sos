@@ -18,4 +18,9 @@ RSpec.describe Volunteer, type: :model do
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:cellphone) }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:volunteer_helps).dependent(:destroy) }
+    it { is_expected.to have_many(:helps).through(:volunteer_helps) }
+  end
 end

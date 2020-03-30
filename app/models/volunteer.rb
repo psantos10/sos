@@ -7,4 +7,7 @@ class Volunteer < ApplicationRecord
   validates :fullname, :email, :cellphone, :province, :county, presence: true
   validates :email, uniqueness: { case_sensitive: false }
   validates :cellphone, uniqueness: true
+
+  has_many :volunteer_helps, dependent: :destroy
+  has_many :helps, through: :volunteer_helps
 end
