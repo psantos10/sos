@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => (
   <nav
-    className="navbar is-primary"
+    className="navbar is-success"
     role="navigation"
     aria-label="main navigation"
   >
