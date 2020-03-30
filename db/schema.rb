@@ -15,17 +15,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_173203) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "phone", null: false
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["phone"], name: "index_users_on_phone", unique: true
-  end
-    
   create_table "helps", force: :cascade do |t|
     t.string "help_type"
     t.string "title"
@@ -44,6 +33,17 @@ ActiveRecord::Schema.define(version: 2020_03_30_173203) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_helps_on_email"
     t.index ["status"], name: "index_helps_on_status"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone", null: false
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["phone"], name: "index_users_on_phone", unique: true
   end
 
   create_table "volunteers", force: :cascade do |t|

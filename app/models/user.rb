@@ -5,5 +5,5 @@ class User < ApplicationRecord
 
   validates :name, :email, :phone, presence: true
   validates :email, uniqueness: { case_sensitive: false }
-  validates :phone, uniqueness: true
+  validates :phone, uniqueness: { case_sensitive: false }
 end
