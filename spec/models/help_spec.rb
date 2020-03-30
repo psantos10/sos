@@ -19,5 +19,6 @@ RSpec.describe Help, type: :model do
     it { is_expected.to validate_presence_of(:district) }
     it { is_expected.to validate_presence_of(:neighborhood) }
     it { is_expected.to validate_presence_of(:address) }
+    it { is_expected.to validate_inclusion_of(:help_type).in_array(Help::HELP_TYPES.keys.map(&:to_s)) }
   end
 end
