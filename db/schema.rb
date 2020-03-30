@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_012836) do
+ActiveRecord::Schema.define(version: 2020_03_30_173203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(version: 2020_03_30_012836) do
     t.index ["phone"], name: "index_users_on_phone", unique: true
   end
     
+  create_table "helps", force: :cascade do |t|
+    t.string "help_type"
+    t.string "title"
+    t.text "description"
+    t.string "fullname"
+    t.string "email"
+    t.string "cellphone"
+    t.string "alternative_cellphone"
+    t.string "province"
+    t.string "county"
+    t.string "district"
+    t.string "neighborhood"
+    t.string "address"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_helps_on_email"
+    t.index ["status"], name: "index_helps_on_status"
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.string "fullname"
     t.string "email"
