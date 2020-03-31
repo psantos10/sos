@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Province < ApplicationRecord
-  validates :name, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
 end
 
 # == Schema Information

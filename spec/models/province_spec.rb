@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Province, type: :model do
   describe 'validations' do
+    before { described_class.create({ name: 'LUANDA' }) }
+
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 end
 
