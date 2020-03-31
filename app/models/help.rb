@@ -15,4 +15,7 @@ class Help < ApplicationRecord
   validates :help_type, :title, :description, presence: true
   validates :fullname, :email, :cellphone, :province, :county, :district, :neighborhood, :address, presence: true
   validates :help_type, inclusion: { in: HELP_TYPES.keys.map(&:to_s) }
+
+  has_many :volunteer_helps, dependent: :destroy
+  has_many :volunteers, through: :volunteer_helps
 end

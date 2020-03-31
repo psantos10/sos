@@ -21,4 +21,9 @@ RSpec.describe Help, type: :model do
     it { is_expected.to validate_presence_of(:address) }
     it { is_expected.to validate_inclusion_of(:help_type).in_array(Help::HELP_TYPES.keys.map(&:to_s)) }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:volunteer_helps).dependent(:destroy) }
+    it { is_expected.to have_many(:volunteers).through(:volunteer_helps) }
+  end
 end
