@@ -5,10 +5,10 @@ require:
 
 AllCops:
   Exclude:
-    - "bin/**/*"
-    - "tmp/**/*"
-    - "db/**/*"
-    - "node_modules/**/*"
+    - 'bin/**/*'
+    - 'tmp/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
   TargetRubyVersion: 2.7
 
 Layout/LineLength:
@@ -16,6 +16,10 @@ Layout/LineLength:
 
 Metrics/MethodLength:
   Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
 
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
