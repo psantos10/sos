@@ -24,4 +24,5 @@ provinces = Province.create([
     { name: 'Namibe' },
     { name: 'Uíge' },
     { name: 'Zaire' },
+
 ])
