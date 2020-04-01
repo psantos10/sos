@@ -3,7 +3,7 @@ class CreateProvinces < ActiveRecord::Migration[6.0]
     create_table :provinces do |t|
       t.string :name
 
-      t.timestamps  
+      t.timestamps
     end
     add_index :provinces, :name, unique: true
   end
