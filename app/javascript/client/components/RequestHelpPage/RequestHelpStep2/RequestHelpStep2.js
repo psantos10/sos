@@ -21,7 +21,10 @@ const RequestHelpStep2 = (props) => {
                 value={props.helpFormValues.help_type}
                 onChange={props.handleInputChange}
               >
-                <option></option>
+                <option>-- SELECCIONE UMA OPÇÃO --</option>
+                <option value="donation_food_clothes">
+                  Doação (Alimentação e Vestuário)
+                </option>
               </select>
             </div>
           </div>

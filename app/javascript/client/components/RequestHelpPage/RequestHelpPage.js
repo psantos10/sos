@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { createHelp } from '../../store/helps/actions';
 
 import RequestHelpStep1 from './RequestHelpStep1';
 import RequestHelpStep2 from './RequestHelpStep2';
@@ -42,8 +45,7 @@ const RequestHelpPage = (props) => {
   };
 
   const handleFinalSubmit = () => {
-    console.log('Form submitted');
-    console.log(helpFormValues);
+    props.saveHelp(helpFormValues);
   };
 
   return (
@@ -87,4 +89,10 @@ const RequestHelpPage = (props) => {
   );
 };
 
-export default RequestHelpPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveHelp: (payload) => dispatch(createHelp(payload)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(RequestHelpPage);
