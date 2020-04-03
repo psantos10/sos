@@ -30,6 +30,20 @@ const RequestHelpStep4 = (props) => {
             <p>Província: {props.helpFormValues.province}</p>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column">
+            {props.errors && props.errors.length !== 0 ? (
+              <div className="notification is-danger">
+                Ocorreu um ou mais erros. Verifique se preencheu todos os campos
+                obrigatórios e tenta novamente.
+                <br />
+                <br />
+                Se o problema persistir, entre em contacto connosco: sos@sos.ao
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       <div className="card-footer">
@@ -44,7 +58,10 @@ const RequestHelpStep4 = (props) => {
         <div className="card-footer-item">
           <button
             onClick={props.handleSubmit}
-            className="button is-success is-fullwidth"
+            className={
+              'button is-success is-fullwidth ' +
+              (props.isLoading ? 'is-loading' : null)
+            }
           >
             Enviar o Pedido
           </button>
@@ -60,6 +77,8 @@ RequestHelpStep4.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   validSteps: PropTypes.array.isRequired,
   helpFormValues: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  errors: PropTypes.array.isRequired,
 };
 
 export default RequestHelpStep4;

@@ -83,10 +83,19 @@ const RequestHelpPage = (props) => {
           handlePrev={handlePrevStep}
           handleSubmit={handleFinalSubmit}
           helpFormValues={helpFormValues}
+          isLoading={props.isLoading}
+          errors={props.errors}
         />
       </div>
     </div>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.helps.loading,
+    errors: state.helps.errors,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -95,4 +104,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(RequestHelpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestHelpPage);
