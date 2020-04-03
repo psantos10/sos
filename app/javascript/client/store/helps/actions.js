@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { push } from 'connected-react-router';
 
 import helpsSlice from './slice';
 
@@ -32,6 +33,7 @@ const createHelp = (payload) => {
       })
       .then((response) => {
         dispatch(actions.createHelpSuccess({ help: response.data }));
+        dispatch(push('/quero-ajudar'));
       })
       .catch((error) => {
         dispatch(actions.createHelpFailure(error.response.data));
