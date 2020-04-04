@@ -1,20 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { history } from './store';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
+import RequestHelpPage from './components/RequestHelpPage';
 
 const AppRouter = () => (
-  <Router>
+  <ConnectedRouter history={history}>
     <Header />
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <HomePage />
+      </Route>
+      <Route path="/preciso-de-ajuda">
+        <RequestHelpPage />
       </Route>
     </Switch>
     <Footer />
-  </Router>
+  </ConnectedRouter>
 );
 
 export default AppRouter;

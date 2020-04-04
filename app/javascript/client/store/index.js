@@ -1,13 +1,27 @@
 import { combineReducers } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+
+import { createBrowserHistory } from 'history';
+
+import helpsSlice from './helps/slice';
+
+export const history = createBrowserHistory();
+
+const middleware = [...getDefaultMiddleware(), routerMiddleware(history)];
 
 const initialState = {};
 
-const rootReducer = combineReducers({});
+const rootReducer = (history) =>
+  combineReducers({
+    router: connectRouter(history),
+    helps: helpsSlice.reducer,
+  });
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: rootReducer(history),
   preloadedState: initialState,
+  middleware,
 });
 
 export default store;
