@@ -16,7 +16,7 @@ RSpec.describe 'API::Helps', type: :request do
     it { expect(response).to have_http_status(:ok) }
 
     describe 'response body' do
-      subject(:parsed_body) { response.parsed_body }
+      subject { response.parsed_body['helps'] }
 
       it { is_expected.to all include('id' => Integer) }
       it { is_expected.to all include('type' => String) }
@@ -79,15 +79,15 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response.content_type).to eq('application/json; charset=utf-8') }
       it { expect(response).to have_http_status(:created) }
 
-      it { expect(response.parsed_body['type']).to eq('Doação (Alimentação e Vestuário)') }
-      it { expect(response.parsed_body['title']).to eq('Need someone to bring me to the hospital') }
-      it { expect(response.parsed_body['description']).to eq('Need someone to bring me to the hospital since I am in risk group') }
-      it { expect(response.parsed_body['fullname']).to eq('Jane Doe') }
-      it { expect(response.parsed_body['cellphone']).not_to eq('924123456') }
-      it { expect(response.parsed_body['province']).to eq('Luanda') }
-      it { expect(response.parsed_body['county']).to eq('Belas') }
-      it { expect(response.parsed_body).not_to include('neighborhood' => String) }
-      it { expect(response.parsed_body).not_to include('address' => String) }
+      it { expect(response.parsed_body['help']['type']).to eq('Doação (Alimentação e Vestuário)') }
+      it { expect(response.parsed_body['help']['title']).to eq('Need someone to bring me to the hospital') }
+      it { expect(response.parsed_body['help']['description']).to eq('Need someone to bring me to the hospital since I am in risk group') }
+      it { expect(response.parsed_body['help']['fullname']).to eq('Jane Doe') }
+      it { expect(response.parsed_body['help']['cellphone']).not_to eq('924123456') }
+      it { expect(response.parsed_body['help']['province']).to eq('Luanda') }
+      it { expect(response.parsed_body['help']['county']).to eq('Belas') }
+      it { expect(response.parsed_body['help']).not_to include('neighborhood' => String) }
+      it { expect(response.parsed_body['help']).not_to include('address' => String) }
     end
   end
 end

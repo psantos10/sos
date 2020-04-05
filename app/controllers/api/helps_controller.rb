@@ -4,7 +4,7 @@ module API
   class HelpsController < ApplicationController
     def index
       helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 10).order('updated_at DESC')
-      render json: helps, status: :ok
+      render json: helps, meta: meta_attributes(helps), status: :ok
     end
 
     def create
@@ -33,6 +33,14 @@ module API
         :neighborhood,
         :address
       )
+    end
+
+    def meta_attributes(collection, extra_meta = {})
+      {
+        current_page: collection.current_page,
+        total_pages: collection.total_pages,
+        total_count: collection.total_entries
+      }.merge(extra_meta)
     end
   end
 end
