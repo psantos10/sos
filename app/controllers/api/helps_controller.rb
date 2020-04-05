@@ -2,6 +2,11 @@
 
 module API
   class HelpsController < ApplicationController
+    def index
+      helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 20)
+      render json: helps, status: :ok
+    end
+
     def create
       help = Help.new(help_params)
       if help.save
