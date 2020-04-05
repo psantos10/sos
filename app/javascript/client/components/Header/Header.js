@@ -28,9 +28,6 @@ const Header = () => (
 
       <div id="navbarMain" className="navbar-menu">
         <div className="navbar-start">
-          <Link to="/" className="navbar-item">
-            Página Inicial
-          </Link>
           <Link to="/preciso-de-ajuda" className="navbar-item">
             Preciso de ajuda
           </Link>
