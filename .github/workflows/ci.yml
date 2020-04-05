@@ -1,0 +1,48 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12.2-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+
+      - name: Install PostgreSQL 12 client
+        run: |
+          sudo apt-get -yqq install libpq-dev
+
+      - name: Build App
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          RAILS_ENV: test
+        run: |
+          cp config/database.yml.github-actions config/database.yml
+          yarn install --check-files
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bin/rails db:setup
+
+      - name: Run RSpec
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          RAILS_MASTER_KEY: f1a4f01ce6f5a751be603e6761d0bb8e
+          RAILS_ENV: test
+        run: |
+          bundle exec rspec
