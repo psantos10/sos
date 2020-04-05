@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import RequestHelpPage from './components/RequestHelpPage';
 import HelpsPage from './components/HelpsPage';
+import HowitWorks from './components/HowitWorks';
 
 const AppRouter = () => (
   <ConnectedRouter history={history}>
@@ -21,6 +22,9 @@ const AppRouter = () => (
       </Route>
       <Route path="/quero-ajudar">
         <HelpsPage />
+      </Route>
+      <Route path="/como-funciona">
+        <HowitWorks/>
       </Route>
     </Switch>
     <Footer />
