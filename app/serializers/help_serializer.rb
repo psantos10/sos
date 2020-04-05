@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class HelpSerializer < ApplicationSerializer
-  attributes :id, :help_type, :title, :description, :fullname, :province, :county, :district
+  attributes :id, :type, :title, :description, :fullname, :province, :county, :district
+
+  def type
+    Help::HELP_TYPES[object.help_type.to_sym]
+  end
 end
 
 # == Schema Information

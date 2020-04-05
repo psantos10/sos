@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   errors: [],
   collection: [],
+  meta: {},
 };
 
 const helpsSlice = createSlice({
@@ -12,10 +13,38 @@ const helpsSlice = createSlice({
   initialState,
 
   reducers: {
+    loadHelpsInit: (state) => {
+      return produce(state, (draft) => {
+        draft.loading = true;
+        draft.errors = [];
+        draft.collection = [];
+        draft.meta = {};
+      });
+    },
+
+    loadHelpsSuccess: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = [];
+        draft.collection = action.payload.helps;
+        draft.meta = action.payload.meta;
+      });
+    },
+
+    loadHelpsFailure: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = action.payload;
+        draft.collection = [];
+        draft.meta = {};
+      });
+    },
+
     createHelpInit: (state) => {
       return produce(state, (draft) => {
         draft.loading = true;
         draft.errors = [];
+        draft.meta = {};
       });
     },
 
@@ -23,7 +52,7 @@ const helpsSlice = createSlice({
       return produce(state, (draft) => {
         draft.loading = false;
         draft.errors = [];
-        draft.collection = [...state.collection, action.payload];
+        draft.collection = [...state.collection, action.payload.help];
       });
     },
 
@@ -31,6 +60,7 @@ const helpsSlice = createSlice({
       return produce(state, (draft) => {
         draft.loading = false;
         draft.errors = action.payload;
+        draft.meta = {};
       });
     },
   },

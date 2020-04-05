@@ -42,10 +42,10 @@ RSpec.describe 'API::Volunteers', type: :request do
       it { expect(response.content_type).to eq('application/json; charset=utf-8') }
       it { expect(response).to have_http_status(:created) }
 
-      it { expect(response.parsed_body['fullname']).to eq('John Doe') }
-      it { expect(response.parsed_body['province']).to eq('Luanda') }
-      it { expect(response.parsed_body['county']).to eq('Belas') }
-      it { expect(response.parsed_body['types_of_availability']).to eq(%w[donation_food_clothes psychological_support]) }
+      it { expect(response.parsed_body['volunteer']['fullname']).to eq('John Doe') }
+      it { expect(response.parsed_body['volunteer']['province']).to eq('Luanda') }
+      it { expect(response.parsed_body['volunteer']['county']).to eq('Belas') }
+      it { expect(response.parsed_body['volunteer']['types_of_availability']).to eq(%w[donation_food_clothes psychological_support]) }
     end
   end
 end
