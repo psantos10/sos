@@ -12,6 +12,30 @@ const helpsSlice = createSlice({
   initialState,
 
   reducers: {
+    loadHelpsInit: (state) => {
+      return produce(state, (draft) => {
+        draft.loading = true;
+        draft.errors = [];
+        draft.collection = [];
+      });
+    },
+
+    loadHelpsSuccess: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = [];
+        draft.collection = action.payload;
+      });
+    },
+
+    loadHelpsFailure: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = action.payload;
+        draft.collection = [];
+      });
+    },
+
     createHelpInit: (state) => {
       return produce(state, (draft) => {
         draft.loading = true;

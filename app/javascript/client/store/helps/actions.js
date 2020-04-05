@@ -5,6 +5,23 @@ import helpsSlice from './slice';
 
 const { actions } = helpsSlice;
 
+const loadHelps = (currentPage) => {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    dispatch(actions.loadHelpsInit());
+
+    axios
+      .get('/api/helps', { params: { page: currentPage } })
+      .then((response) => {
+        dispatch(actions.loadHelpsSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(actions.loadHelpsFailure(error.response.data));
+      });
+  };
+};
+
 const createHelp = (payload) => {
   return (dispatch, getState) => {
     const state = getState();
@@ -41,4 +58,4 @@ const createHelp = (payload) => {
   };
 };
 
-export { createHelp };
+export { loadHelps, createHelp };
