@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="content has-text-centered">
-        <p>SOS Angola v1.0.0.alpha</p>
+        <p>SOS Angola v1.0.0.alpha.1</p>
         <p>Política de privacidade | Termos de serviço</p>
       </div>
     </footer>
