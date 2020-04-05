@@ -3,7 +3,7 @@
 module API
   class HelpsController < ApplicationController
     def index
-      helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 20)
+      helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 10).order('updated_at DESC')
       render json: helps, status: :ok
     end
 

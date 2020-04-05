@@ -10,7 +10,7 @@ RSpec.describe HelpSerializer, type: :serializer do
     let(:help_attributes) do
       {
         'id' => Integer,
-        'help_type' => String,
+        'type' => String,
         'title' => String,
         'description' => String,
         'fullname' => String,

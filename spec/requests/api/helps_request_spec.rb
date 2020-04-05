@@ -19,7 +19,7 @@ RSpec.describe 'API::Helps', type: :request do
       subject(:parsed_body) { response.parsed_body }
 
       it { is_expected.to all include('id' => Integer) }
-      it { is_expected.to all include('help_type' => String) }
+      it { is_expected.to all include('type' => String) }
       it { is_expected.to all include('title' => String) }
       it { is_expected.to all include('description' => String) }
       it { is_expected.to all include('fullname' => String) }
@@ -79,7 +79,7 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response.content_type).to eq('application/json; charset=utf-8') }
       it { expect(response).to have_http_status(:created) }
 
-      it { expect(response.parsed_body['help_type']).to eq('donation_food_clothes') }
+      it { expect(response.parsed_body['type']).to eq('Doação (Alimentação e Vestuário)') }
       it { expect(response.parsed_body['title']).to eq('Need someone to bring me to the hospital') }
       it { expect(response.parsed_body['description']).to eq('Need someone to bring me to the hospital since I am in risk group') }
       it { expect(response.parsed_body['fullname']).to eq('Jane Doe') }
