@@ -5,14 +5,16 @@ import helpsSlice from './slice';
 
 const { actions } = helpsSlice;
 
-const loadHelps = (currentPage) => {
+const loadHelps = (currentPage, totalPerPage) => {
   return (dispatch, getState) => {
     const state = getState();
 
     dispatch(actions.loadHelpsInit());
 
     axios
-      .get('/api/helps', { params: { page: currentPage } })
+      .get('/api/helps', {
+        params: { page: currentPage, per_page: totalPerPage },
+      })
       .then((response) => {
         dispatch(actions.loadHelpsSuccess(response.data));
       })

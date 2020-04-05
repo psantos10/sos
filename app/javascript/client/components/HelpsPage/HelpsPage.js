@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import Pagination from 'react-js-pagination';
 
 import { loadHelps } from '../../store/helps/actions';
 import HelpCard from './HelpCard';
 
 const HelpsPage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPerPage, setTotalPerPage] = useState(5);
 
   useEffect(() => {
-    props.loadHelps(currentPage);
-  }, []);
+    props.loadHelps(currentPage, totalPerPage);
+  }, [currentPage]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="container">
@@ -22,6 +28,25 @@ const HelpsPage = (props) => {
         {props.helps.map((help) => (
           <HelpCard key={help.id} help={help} />
         ))}
+
+        <nav
+          className="pagination is-centered"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <Pagination
+            activePage={currentPage}
+            itemsCountPerPage={totalPerPage}
+            totalItemsCount={
+              props.helpsMeta.total_count ? props.helpsMeta.total_count : 0
+            }
+            innerClass="pagination-list"
+            linkClass="pagination-link"
+            activeLinkClass="is-current"
+            onChange={handlePageChange}
+          />
+        </nav>
+        <br />
       </div>
     </div>
   );
@@ -34,12 +59,14 @@ const mapStateToProps = (state) => {
     isLoading: state.helps.loading,
     errors: state.helps.errors,
     helps: state.helps.collection,
+    helpsMeta: state.helps.meta,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadHelps: (currentPage) => dispatch(loadHelps(currentPage)),
+    loadHelps: (currentPage, totalPerPage) =>
+      dispatch(loadHelps(currentPage, totalPerPage)),
   };
 };
 
