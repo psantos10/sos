@@ -29,6 +29,12 @@ RSpec.describe 'API::Helps', type: :request do
       it { is_expected.to all exclude('neighborhood' => String) }
       it { is_expected.to all exclude('address' => String) }
     end
+
+    context 'when pagination params are given' do
+      let(:params) { { page: 1, per_page: 2 } }
+
+      it { expect(response.parsed_body.count).to eq(2) }
+    end
   end
 
   describe 'POST /api/helps' do

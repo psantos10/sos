@@ -3,7 +3,7 @@
 module API
   class HelpsController < ApplicationController
     def index
-      helps = Help.all
+      helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 20)
       render json: helps, status: :ok
     end
 
