@@ -24,7 +24,7 @@ const AppRouter = () => (
         <HelpsPage />
       </Route>
       <Route path="/como-funciona">
-        <HowitWorks/>
+        <HowitWorks />
       </Route>
     </Switch>
     <Footer />
