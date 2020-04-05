@@ -4,6 +4,32 @@ require 'rails_helper'
 
 RSpec.describe 'API::Helps', type: :request do
   let(:headers) { { 'ACCEPT' => 'application/json' } }
+  let(:params) { nil }
+
+  describe 'GET /api/helps' do
+    before do
+      create_list(:help, 3)
+      get '/api/helps', params: params, headers: headers
+    end
+
+    it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+    it { expect(response).to have_http_status(:ok) }
+
+    describe 'response body' do
+      subject(:parsed_body) { response.parsed_body }
+
+      it { is_expected.to all include('id' => Integer) }
+      it { is_expected.to all include('help_type' => String) }
+      it { is_expected.to all include('title' => String) }
+      it { is_expected.to all include('description' => String) }
+      it { is_expected.to all include('fullname' => String) }
+      it { is_expected.to all include('province' => String) }
+      it { is_expected.to all include('county' => String) }
+      it { is_expected.to all include('district' => String) }
+      it { is_expected.to all exclude('neighborhood' => String) }
+      it { is_expected.to all exclude('address' => String) }
+    end
+  end
 
   describe 'POST /api/helps' do
     before do
@@ -54,8 +80,8 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response.parsed_body['cellphone']).not_to eq('924123456') }
       it { expect(response.parsed_body['province']).to eq('Luanda') }
       it { expect(response.parsed_body['county']).to eq('Belas') }
-      it { expect(response.parsed_body['neighborhood']).to eq('Kilamba') }
-      it { expect(response.parsed_body['address']).to eq('Rua K, Prédio H, Porta 150 2º Andar') }
+      it { expect(response.parsed_body).not_to include('neighborhood' => String) }
+      it { expect(response.parsed_body).not_to include('address' => String) }
     end
   end
 end

@@ -16,14 +16,22 @@ RSpec.describe HelpSerializer, type: :serializer do
         'fullname' => String,
         'province' => String,
         'county' => String,
-        'district' => String,
+        'district' => String
+      }
+    end
+    let(:not_include_attributes) do
+      {
+        'email' => String,
+        'cellphone' => String,
+        'alternative_cellphone' => String,
         'neighborhood' => String,
         'address' => String
+
       }
     end
 
     it { expect(serialized_object).to include(help_attributes) }
-    it { expect(serialized_object).not_to include({ 'email' => String, 'cellphone' => String, 'alternative_cellphone' => String }) }
+    it { expect(serialized_object).not_to include(not_include_attributes) }
   end
 end
 
