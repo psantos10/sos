@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HowitWorks = () => {
+const HowItWorks = () => {
   return (
     <div className="container">
     <br />
@@ -12,4 +12,4 @@ const HowitWorks = () => {
   );
 }
 
-export default HowitWorks;
+export default HowItWorks;
