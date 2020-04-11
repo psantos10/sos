@@ -2,6 +2,8 @@
 
 module API
   class HelpsController < BaseController
+    skip_before_action :require_authenticated_volunteer, only: %i[index show create]
+
     def index
       helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 10).order('updated_at DESC')
       render json: helps, meta: meta_attributes(helps), status: :ok
