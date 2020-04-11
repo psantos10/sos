@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module API
-  class VolunteersController < ApplicationController
+  class VolunteersController < BaseController
     def create
       volunteer = Volunteer.new(volunteer_params)
       if volunteer.save

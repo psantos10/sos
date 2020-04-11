@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 module API
-  class HelpsController < ApplicationController
+  class HelpsController < BaseController
     def index
       helps = Help.paginate(page: params[:page], per_page: params[:per_page] || 10).order('updated_at DESC')
       render json: helps, meta: meta_attributes(helps), status: :ok
+    end
+
+    def show
+      help = Help.find(params[:id])
+      render json: help, status: :ok
     end
 
     def create

@@ -37,6 +37,41 @@ RSpec.describe 'API::Helps', type: :request do
     end
   end
 
+  describe 'GET /api/help/:id' do
+    before do
+      get "/api/helps/#{help_id}", headers: headers
+    end
+
+    context 'with existing help request' do
+      let(:help) { create(:help) }
+      let(:help_id) { help.id }
+
+      it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+      it { expect(response).to have_http_status(:ok) }
+
+      it { expect(response.parsed_body['help']).to include('id' => Integer) }
+      it { expect(response.parsed_body['help']).to include('type' => String) }
+      it { expect(response.parsed_body['help']).to include('title' => String) }
+      it { expect(response.parsed_body['help']).to include('description' => String) }
+      it { expect(response.parsed_body['help']).to include('fullname' => String) }
+      it { expect(response.parsed_body['help']).to include('province' => String) }
+      it { expect(response.parsed_body['help']).to include('county' => String) }
+      it { expect(response.parsed_body['help']).to include('district' => String) }
+      it { expect(response.parsed_body['help']).to exclude('neighborhood' => String) }
+      it { expect(response.parsed_body['help']).to exclude('address' => String) }
+    end
+
+    context 'with non existing help request' do
+      let(:help_id) { 99_999 }
+
+      it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+      it { expect(response).to have_http_status(:not_found) }
+
+      it { expect(response.parsed_body).to include('message' => "Registo com ID #{help_id} não encontrado.") }
+      it { expect(response.parsed_body).to include('code' => 'not_found') }
+    end
+  end
+
   describe 'POST /api/helps' do
     before do
       post '/api/helps', params: params, headers: headers
