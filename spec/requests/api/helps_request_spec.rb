@@ -68,7 +68,7 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response).to have_http_status(:not_found) }
 
       it { expect(response.parsed_body).to include('message' => "Registo com ID #{help_id} não encontrado.") }
-      it { expect(response.parsed_body).to include('code' => 'not_found') }
+      it { expect(response.parsed_body).to include('code' => 404) }
     end
   end
 

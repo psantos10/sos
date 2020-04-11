@@ -21,7 +21,7 @@ module API
     private
 
     def record_not_found(exception)
-      render json: { message: "Registo com ID #{exception.id} não encontrado.", code: 'not_found' }, status: :not_found
+      render json: { message: "Registo com ID #{exception.id} não encontrado.", code: 404 }, status: :not_found
     end
   end
 end
