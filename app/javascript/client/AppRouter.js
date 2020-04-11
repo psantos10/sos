@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import RequestHelpPage from './components/RequestHelpPage';
 import HelpsPage from './components/HelpsPage';
+import HelpPage from './components/HelpPage';
 import HowItWorks from './components/HowItWorks';
 
 const AppRouter = () => (
@@ -20,8 +21,11 @@ const AppRouter = () => (
       <Route path="/preciso-de-ajuda">
         <RequestHelpPage />
       </Route>
-      <Route path="/quero-ajudar">
+      <Route exact path="/quero-ajudar">
         <HelpsPage />
+      </Route>
+      <Route path="/quero-ajudar/:id">
+        <HelpPage />
       </Route>
       <Route path="/como-funciona">
         <HowItWorks />
