@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: false,
   errors: [],
+  currentHelp: {},
   collection: [],
   meta: {},
 };
@@ -13,6 +14,36 @@ const helpsSlice = createSlice({
   initialState,
 
   reducers: {
+    loadHelpInit: (state) => {
+      return produce(state, (draft) => {
+        draft.loading = true;
+        draft.errors = [];
+        draft.currentHelp = {};
+        draft.collection = [];
+        draft.meta = {};
+      });
+    },
+
+    loadHelpSuccess: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = [];
+        draft.currentHelp = action.payload.help;
+        draft.collection = [];
+        draft.meta = {};
+      });
+    },
+
+    loadHelpFailure: (state, action) => {
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.errors = action.payload;
+        draft.currentHelp = {};
+        draft.collection = [];
+        draft.meta = {};
+      });
+    },
+
     loadHelpsInit: (state) => {
       return produce(state, (draft) => {
         draft.loading = true;
