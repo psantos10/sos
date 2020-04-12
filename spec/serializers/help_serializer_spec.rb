@@ -16,7 +16,8 @@ RSpec.describe HelpSerializer, type: :serializer do
         'fullname' => String,
         'province' => String,
         'county' => String,
-        'district' => String
+        'district' => String,
+        'volunteers' => Array
       }
     end
     let(:not_include_attributes) do

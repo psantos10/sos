@@ -59,6 +59,7 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response.parsed_body['help']).to include('district' => String) }
       it { expect(response.parsed_body['help']).to exclude('neighborhood' => String) }
       it { expect(response.parsed_body['help']).to exclude('address' => String) }
+      it { expect(response.parsed_body['help']).to include('volunteers' => Array) }
     end
 
     context 'with non existing help request' do
@@ -123,6 +124,72 @@ RSpec.describe 'API::Helps', type: :request do
       it { expect(response.parsed_body['help']['county']).to eq('Belas') }
       it { expect(response.parsed_body['help']).not_to include('neighborhood' => String) }
       it { expect(response.parsed_body['help']).not_to include('address' => String) }
+    end
+  end
+
+  describe 'POST /api/helps/:id/apply_to_help' do
+    let(:help) { create(:help) }
+
+    context 'with authenticated volunteer' do
+      let(:volunteer) { create(:volunteer) }
+
+      before do
+        authenticate_volunteer(volunteer_email: volunteer.email)
+      end
+
+      context 'with existing help request' do
+        before do
+          post "/api/helps/#{help.id}/apply_to_help", headers: headers
+        end
+
+        it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+        it { expect(response).to have_http_status(:created) }
+
+        it { expect(response.parsed_body['help']).to include('id' => Integer) }
+        it { expect(response.parsed_body['help']).to include('type' => String) }
+        it { expect(response.parsed_body['help']).to include('title' => String) }
+        it { expect(response.parsed_body['help']).to include('description' => String) }
+        it { expect(response.parsed_body['help']).to include('fullname' => String) }
+        it { expect(response.parsed_body['help']).to include('province' => String) }
+        it { expect(response.parsed_body['help']).to include('county' => String) }
+        it { expect(response.parsed_body['help']).to include('district' => String) }
+        it { expect(response.parsed_body['help']).to exclude('neighborhood' => String) }
+        it { expect(response.parsed_body['help']).to exclude('address' => String) }
+
+        it { expect(response.parsed_body['help']).to include('volunteers' => Array) }
+        it { expect(response.parsed_body['help']['volunteers'][0]).to include('id' => volunteer.id) }
+        it { expect(help.reload.volunteers).to include(volunteer) }
+      end
+
+      context 'with non existing help request' do
+        subject { response.parsed_body }
+
+        before do
+          post '/api/helps/9999/apply_to_help', headers: headers
+        end
+
+        it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+        it { expect(response).to have_http_status(:not_found) }
+        it { is_expected.to include 'message' => String }
+        it { is_expected.to include 'message' => 'Registo com ID 9999 não encontrado.' }
+        it { is_expected.to include 'code' => Integer }
+        it { is_expected.to include 'code' => 404 }
+      end
+    end
+
+    context 'with unauthenticated volunteer' do
+      subject { response.parsed_body }
+
+      before do
+        post "/api/helps/#{help.id}/apply_to_help", headers: headers
+      end
+
+      it { expect(response.content_type).to eq('application/json; charset=utf-8') }
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { is_expected.to include 'message' => String }
+      it { is_expected.to include 'message' => 'Authentication required' }
+      it { is_expected.to include 'code' => Integer }
+      it { is_expected.to include 'code' => 401 }
     end
   end
 end

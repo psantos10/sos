@@ -2,6 +2,7 @@
 
 class HelpSerializer < ApplicationSerializer
   attributes :id, :type, :title, :description, :fullname, :province, :county, :district
+  has_many :volunteers
 
   def type
     Help::HELP_TYPES[object.help_type.to_sym]

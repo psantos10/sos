@@ -23,6 +23,13 @@ module API
       end
     end
 
+    def apply_to_help
+      help = Help.find(params[:help_id])
+      help.volunteers << current_volunteer
+
+      render json: help, status: :created
+    end
+
     private
 
     def help_params

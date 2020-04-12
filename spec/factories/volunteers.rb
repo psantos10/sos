@@ -5,7 +5,7 @@ FactoryBot.define do
     fullname { 'John Doe' }
     sequence(:email) { |n| "John.Doe#{n}@example.com" }
     password { 'Super$123456' }
-    cellphone { '924123456' }
+    cellphone { Faker::PhoneNumber.cell_phone }
     types_of_availability { %w[donation_food_clothes psychological_support] }
     province { 'Luanda' }
     county { 'Belas' }
