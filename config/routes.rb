@@ -2,8 +2,14 @@
 
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
-    resources :volunteers, only: %i[create]
-    resources :helps, only: %i[index show create]
+    resources :volunteers, only: %i[create] do
+      collection do
+        post 'auth'
+      end
+    end
+    resources :helps, only: %i[index show create] do
+      post 'apply_to_help'
+    end
   end
 
   get '*path', to: 'pages#index', constraints: ->(req) { req.path.exclude? 'storage' }
