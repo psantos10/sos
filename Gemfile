@@ -38,6 +38,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails', '~> 4.0'
 end
 
@@ -57,6 +58,7 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner-active_record', '~> 1.8'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', require: false
 end
