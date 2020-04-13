@@ -17,7 +17,7 @@ module API
       volunteer = Volunteer.find_by(email: params[:auth][:email])
       if volunteer&.authenticate(params[:auth][:password])
         session[:volunteer_id] = volunteer.id
-        render json: volunteer, status: :ok
+        render json: volunteer, status: :created
       else
         session[:volunteer_id] = nil
         render json: { message: 'Authentication failed', code: 401 }, status: :unauthorized
