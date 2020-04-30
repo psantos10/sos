@@ -45,7 +45,7 @@ end
 group :development do
   gem 'annotate', '~> 3.1', '>= 3.1.1'
   gem 'brakeman'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'web-console', '>= 3.3.0'
 
   gem 'spring'
