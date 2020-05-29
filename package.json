@@ -2,7 +2,7 @@
   "name": "sos",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "7.9.4",
+    "@babel/preset-react": "7.10.1",
     "@rails/actioncable": "6.0.3",
     "@rails/activestorage": "6.0.3",
     "@rails/ujs": "6.0.3",
