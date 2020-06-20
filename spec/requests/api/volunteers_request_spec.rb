@@ -17,7 +17,7 @@ RSpec.describe 'API::Volunteers', type: :request do
       let(:params) { { auth: { email: volunteer.email, password: 'secret$123' } } }
 
       it { expect(response.content_type).to eq('application/json; charset=utf-8') }
-      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to have_http_status(:created) }
 
       it { expect(session[:volunteer_id]).to eq volunteer.id }
 

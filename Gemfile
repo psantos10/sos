@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'bcrypt', '~> 3.1.13'
 gem 'rack-attack', '~> 6.2', '>= 6.2.2'
+gem 'rack-cors'
 gem 'will_paginate', '~> 3.3'
 
 # Use Active Storage variant
