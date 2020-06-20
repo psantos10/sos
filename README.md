@@ -34,6 +34,23 @@ Run all pending migrations:
 
 > $ bundle exec rails db:migrate
 
+## Running the application locally
+
+You need to setup a local hostnames that points to 127.0.0.1.
+
+sos.local -> 127.0.0.1<br>
+app.sos.local -> 127.0.0.1<br>
+api.sos.local -> 127.0.0.1<br>
+
+### Backend
+
+> $ bundle exec rails s -b 0.0.0.0
+
+### Frontend
+
+> $ bin/webpack-dev-server
+
+
 ## Running test suite and Linters
 
 ### Backend
@@ -44,7 +61,7 @@ Run all pending migrations:
 
 ### Frontend
 
-> $ 
+> 
 
 ## Contributing / Participation
 
