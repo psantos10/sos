@@ -13,15 +13,15 @@ https://sos.ao
 
 ## Install Dependencies
 
-# Backend
+### Backend
 
 > $ bundle install
 
-# Frontend
+### Frontend
 
 > $ yarn install
 
-# Setup Database
+## Setup Database
 
 **SOS Angola** project uses PostgreSQL as a relational database system. After install PostgreSQL locally, you can create
 database and tables structures as follows.
