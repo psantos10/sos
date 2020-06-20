@@ -39,8 +39,9 @@ end
 #
 # Indexes
 #
-#  index_volunteer_helps_on_help_id       (help_id)
-#  index_volunteer_helps_on_volunteer_id  (volunteer_id)
+#  index_volunteer_helps_on_help_id                   (help_id)
+#  index_volunteer_helps_on_volunteer_id              (volunteer_id)
+#  index_volunteer_helps_on_volunteer_id_and_help_id  (volunteer_id,help_id) UNIQUE
 #
 # Foreign Keys
 #
