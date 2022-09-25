@@ -891,10 +891,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@rails/actioncable@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.3.tgz#722b4b639936129307ddbab3a390f6bcacf3e7bc"
-  integrity sha512-I01hgqxxnOgOtJTGlq0ZsGJYiTEEiSGVEGQn3vimZSqEP1HqzyFNbzGTq14Xdyeow2yGJjygjoFF1pmtE+SQaw==
+"@rails/actioncable@6.1.7":
+  version "6.1.7"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.7.tgz#8b4506925d3f7146a70941e4db7ce9dda99f99ae"
+  integrity sha512-F6S74NGpxhbbDRFsQFGYqefRfZPgYvePNtz9hHKYOqLturrsqrDoG+UcrxEGHsvqDUorMYfx4Wl3K8smmk/u2g==
 
 "@rails/activestorage@6.0.3":
   version "6.0.3"
